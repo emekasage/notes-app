@@ -1,9 +1,9 @@
 require("dotenv").config();
 
-const config = require("./config.json");
+// const config = require("./config.json");
 const mongoose = require("mongoose");
 
-mongoose.connect(config.connectionString);
+mongoose.connect(process.env.MONGO_URI);
 
 const User = require("./models/user.model");
 const Note = require("./models/note.model");
@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: "*",
-  })
+  }),
 );
 
 app.get("/", (req, res) => {
